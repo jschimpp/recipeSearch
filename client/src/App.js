@@ -1,5 +1,4 @@
 import './App.css';
-import Form from './components/form';
 import Results from './components/results';
 import DisplayedRecipe from './components/displayedRecipe';
 import {useState} from 'react';
@@ -8,7 +7,7 @@ import axios from 'axios';
 function App() {
 const [recipe, setRecipe]=useState("");
 const [results, setResults]=useState([]);
-const [displayedRecipe, setDisplayedRecipe]=useState({title: ""});
+const [displayedRecipe, setDisplayedRecipe]=useState({0:{title: ""}});
 const [displayedRecipeIngredients, setDisplayedRecipeIngredients]=useState([]);
 
 const baseRecipeSearchUrl=`https://api.spoonacular.com/recipes/complexSearch?apiKey=a9eba9462eef4ea6a5c567435ab26b01`;
