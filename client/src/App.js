@@ -2,6 +2,7 @@ import './App.css';
 import Results from './components/results';
 import DisplayedRecipe from './components/displayedRecipe';
 import {useState} from 'react';
+import fetchIngredients from './components/fetchIngredients';
 import axios from 'axios';
 
 function App() {
@@ -29,21 +30,7 @@ const search=()=>{
 }
 
 const handleFinalRecipe=(id)=>{
-  axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=a9eba9462eef4ea6a5c567435ab26b01`)
-  .then((response)=>{
-    const data=response.data.extendedIngredients;
-    console.log(data);
-    console.log('Data has been recieved');
-    let ingredientsList=[];
-    for (let i=0; i<data.length; i++) {
-      ingredientsList.push(data[i].amount+" "+data[i].unit+" "+data[i].name);
-    }
-    console.log(ingredientsList);
-    setDisplayedRecipeIngredients(ingredientsList);
-  })
-  .catch(()=>{
-    alert('Data not recieved');
-  });
+  fetchIngredients({ident: id, set: setDisplayedRecipeIngredients});
   const newResults=results;
   setDisplayedRecipe(newResults.filter((item)=>{
     return item.id===id
